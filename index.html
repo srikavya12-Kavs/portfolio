@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swarna Sri Kavya | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #0f2027;
+  color: white;
+  scroll-behavior: smooth;
+}
+a { color: inherit; text-decoration: none; }
+
+/* Navbar */
+nav {
+  display: flex; justify-content: space-between;
+  padding: 1rem 5%; position: fixed; width: 100%;
+  top: 0; background: rgba(0,0,0,0.7); z-index: 10;
+}
+nav a { margin: 0 15px; font-weight: 500; }
+nav a:hover { color: #ff9800; }
+
+/* Hero */
+.hero {
+  height: 100vh; display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  text-align: center; padding: 0 10px;
+}
+.hero h1 { font-size: 2.5rem; }
+.hero span { font-weight: 700; }
+.hero p { margin-top: 10px; font-size: 1.1rem; }
+.hero button {
+  margin-top: 20px; padding: 10px 20px; background: white;
+  border: none; border-radius: 25px; cursor: pointer;
+  font-weight: bold; transition: 0.3s;
+}
+.hero button:hover { background: #222; color: white; }
+
+/* Sections */
+section { padding: 80px 10%; }
+
+/* About */
+.about { display: flex; flex-wrap: wrap; align-items: center; }
+.about img { width: 280px; border-radius: 15px; margin-right: 30px; }
+.about p { max-width: 600px; line-height: 1.6; }
+
+/* Skills */
+.skills { background: #1c1c1c; text-align: center; }
+.skills h2 { margin-bottom: 30px; }
+.skill-box { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+.skill {
+  background: #222; padding: 15px 20px; border-radius: 8px;
+  transition: 0.3s;
+}
+.skill:hover { background: #ff9800; transform: scale(1.05); }
+
+/* Projects */
+.projects { text-align: center; }
+.project-grid {
+  display: grid; gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.project {
+  background: #222; padding: 15px; border-radius: 10px; transition: 0.3s;
+}
+.project img { width: 100%; border-radius: 8px; margin-bottom: 10px; }
+.project:hover { transform: translateY(-5px); }
+
+/* Horizontal Media Scroll for Project 3 */
+.project-media {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 10px;
+  padding-bottom: 10px;
+  scrollbar-width: thin;
+}
+.project-media::-webkit-scrollbar {
+  height: 8px;
+}
+.project-media::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+.project-media img,
+.project-media video {
+  flex: 0 0 auto;
+  height: 200px;
+  border-radius: 8px;
+}
+
+/* Experience Section Styling */
+.exp { background: #1c1c1c; text-align: center; }
+.exp h2 { margin-bottom: 20px; }
+.exp-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.exp-item {
+  background: #222;
+  padding: 15px;
+  border-radius: 10px;
+  width: 500px; /* slightly bigger card */
+  text-align: center;
+  transition: 0.3s;
+}
+.exp-item:hover { transform: scale(1.05); }
+.exp-logo {
+  width: 500px; /* bigger logo */
+  height: 500px; /* bigger logo */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.exp strong { display: block; margin-top: 5px; font-size: 1rem; }
+.exp span { font-size: 0.9rem; color: #ccc; }
+.exp small { font-size: 0.8rem; color: #999; }
+
+
+/* Gallery */
+.gallery { text-align: center; background: #1c1c1c; }
+.gallery h2 { margin-bottom: 30px; }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+.gallery-grid img {
+  width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.gallery-grid img:hover { transform: scale(1.05); }
+
+/* Lightbox */
+#lightbox {
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.8);
+  justify-content:center; align-items:center;
+  z-index:999;
+}
+#lightbox img {
+  max-width:90%;
+  max-height:90%;
+  border-radius:10px;
+}
+
+/* Experience, Education, Certifications, Achievements */
+.exp, .education, .certs, .achievements { background: #1c1c1c; }
+.exp h2, .education h2, .certs h2, .achievements h2 { margin-bottom: 20px; }
+.exp ul, .education ul, .certs ul, .achievements ul { list-style: none; }
+.exp li, .education li, .certs li, .achievements li {
+  margin-bottom: 15px; line-height: 1.6;
+}
+
+/* Gallery */
+.gallery { text-align: center; background: #1c1c1c; }
+.gallery h2 { margin-bottom: 30px; }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+.gallery-grid img {
+  width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.gallery-grid img:hover {
+  transform: scale(1.05);
+}
+
+/* Lightbox */
+#lightbox {
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.8);
+  justify-content:center; align-items:center;
+  z-index:999;
+}
+#lightbox img {
+  max-width:90%;
+  max-height:90%;
+  border-radius:10px;
+}
+
+/* Contact */
+.contact { text-align: center; }
+.contact a {
+  display: inline-block; margin: 10px; background: #ff9800;
+  color: white; padding: 10px 20px; border-radius: 5px;
+  transition: 0.3s;
+}
+
+.contact a:hover { background: #f44336; }
+.contact a:last-child {
+  background: #4caf50; /* Green resume button */
+}
+.contact a:last-child:hover {
+  background: #388e3c;
+}
+
+
+/* Footer */
+footer { text-align: center; padding: 15px; background: #111; }
+
+/* Responsive */
+@media(max-width:768px) {
+  .about { flex-direction: column; text-align: center; }
+  .about img { margin-bottom: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <div><strong>Swarna Sri Kavya</strong></div>
+  <div>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#certs">Certifications</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>Hi, I'm <span id="typing"></span></h1>
+  <p>Computer Science & Business Systems Student | Aspiring Software Engineer | Machine Learning Enthusiast</p>
+  <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Me</button>
+</div>
+
+<!-- About -->
+<section id="about" class="about">
+  <img src="images/profile.jpg.jpg" alt="Profile">
+  <p>I am an enthusiastic B.Tech student specializing in Computer Science and Business Systems, passionate about technology and its intersection with business. Skilled in programming, data structures, algorithms, and full-stack development. I love solving problems through code and leveraging technology for impactful solutions.</p>
+</section>
+
+<!-- Skills -->
+<section id="skills" class="skills">
+  <h2>Technical Skills</h2>
+  <div class="skill-box">
+    <div class="skill">Python</div>
+    <div class="skill">JavaScript</div>
+    <div class="skill">HTML/CSS</div>
+    <div class="skill">SQL</div>
+    <div class="skill">C++</div>
+    <div class="skill">Data Structures & Algorithms</div>
+    <div class="skill">Machine Learning</div>
+    <div class="skill">Git/GitHub</div>
+    <div class="skill">Microsoft Azure</div>
+    <div class="skill">DBMS</div>
+	 <div class="skill">Operating Systems</div>
+    <div class="skill">System Design</div>
+    <div class="skill">Android Studio</div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects" class="projects">
+  <h2>Projects</h2>
+  <div class="project-grid">
+
+    <!-- Project 1 -->
+    <div class="project">
+      <img src="images/project1.png" alt="Fake News Detection">
+      <img src="images/project2.png" alt="">
+      <p><strong>Fake News Detection Using Machine Learning</strong></p>
+      <a href="https://github.com/srikavya12-Kavs/flask-machinelearning" target="_blank">GitHub</a> |
+      <a href="https://flask-machinelearning.onrender.com" target="_blank">Live Demo</a>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project">
+	
+      
+      <p><strong>Gesture-Based Volume Control</strong></p>
+      <a href="https://github.com/srikavya12-Kavs/Gesture-Control-opencv" target="_blank">GitHub</a> |
+	  <a href="https://youtu.be/UR9CS4BRFi8" target="_blank">Live Link</a>
+    </div>
+
+    <!-- Project 3 with Horizontal Scroll -->
+    <div class="project">
+      <div class="project-media">
+        <img src="images/project3.png" alt="Hostel Management System">
+        <img src="images/project4.png" alt="">
+        <img src="images/project5.png" alt="">
+        <img src="images/project6.png" alt="">
+        <img src="images/project7.png" alt="">
+        <img src="images/project8.png" alt="">
+        <img src="images/project9.png" alt="">
+        <img src="images/project10.png" alt="">
+        <img src="images/project11.png" alt="">
+        <img src="images/project12.png" alt="">
+        <img src="images/project13.png" alt="">
+        <img src="images/project14.png" alt="">
+        
+      </div>
+      <p><strong>Hostel Management System</strong></p>
+      <a href="https://github.com/srikavya12-Kavs/Hostel-management-system" target="_blank">GitHub</a> |
+	  <a href="https://youtu.be/R_yeGOw8c_M" target="_blank">Live Link</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Experience -->
+<section id="experience" class="exp">
+  <h2>Experience</h2>
+  <div class="exp-gallery">
+    <div class="exp-item">
+      <img src="images/aicte1.jpeg" alt="Microsoft Logo" class="exp-logo">
+      <strong>Microsoft</strong>
+      <span>AICTE-Azure Internship</span>
+      <small>(May 2025 - June 2025)</small>
+    </div>
+    <div class="exp-item">
+      <img src="images/aicte2.jpg" alt="AICTE Logo" class="exp-logo">
+
+      <strong>AICTE</strong>
+      <span>AI & Data Analytics Intern</span>
+      <small>(Dec 2024 - Jan 2025)</small>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Education -->
+<section id="education" class="education">
+  <h2>Education</h2>
+  <ul>
+    <li><strong>B.Tech in CSBS</strong> — Vignan's University, CGPA: 8.80</li>
+    <li><strong>Intermediate</strong> — Sri Chaitanya College, Marks: 987/1000</li>
+    <li><strong>SSC</strong> — New Era School, CGPA: 10/10 </li>
+  </ul>
+</section>
+
+<!-- Certificates Gallery -->
+<section id="cert-gallery" class="gallery">
+  <h2>My Certificates</h2>
+  <div class="gallery-grid">
+    <img src="images/cert1.jpeg" alt="Certificate 1">
+    <img src="images/cert2.jpeg" alt="Certificate 2">
+    <img src="images/cert3.jpeg" alt="Certificate 3">
+    <img src="images/cert4.jpeg" alt="Certificate 4">
+    <img src="images/cert5.jpeg" alt="Certificate 5">
+    <img src="images/cert6.jpeg" alt="Certificate 6">
+    <img src="images/cert7.jpeg" alt="Certificate 7">
+    <img src="images/cert8.jpeg" alt="Certificate 8">
+    <img src="images/cert9.jpeg" alt="Certificate 9">
+    <img src="images/cert10.jpeg" alt="Certificate 10">
+	<img src="images/cert11.png" alt="Certificate 11">
+    <img src="images/cert12.png" alt="Certificate 12">
+    <img src="images/cert13.png" alt="Certificate 13">
+    <img src="images/cert14.png" alt="Certificate 14">
+    <img src="images/cert15.jpg" alt="Certificate 15">
+    <img src="images/cert16.jpg" alt="Certificate 16">
+    <img src="images/cert17.jpg" alt="Certificate 17">
+    <img src="images/cert18.jpg" alt="Certificate 18">
+    <img src="images/cert19.jpg" alt="Certificate 19">
+    <img src="images/cert20.jpg" alt="Certificate 20">
+	<img src="images/cert21.jpg" alt="Certificate 21">
+    <img src="images/cert22.jpg" alt="Certificate 22">
+    <img src="images/cert23.jpg" alt="Certificate 23">
+    <img src="images/cert24.jpg" alt="Certificate 24">
+	 <img src="images/cert25.jpg" alt="Certificate 25">
+    <img src="images/cert26.jpg" alt="Certificate 26">
+    <img src="images/cert27.jpg" alt="Certificate 27">
+    <img src="images/cert28.jpg" alt="Certificate 28">
+    <img src="images/cert29.jpg" alt="Certificate 29">
+    <img src="images/cert30.jpg" alt="Certificate 30">
+    <img src="images/cert31.jpg" alt="Certificate 31">
+    <img src="images/cert32.jpg" alt="Certificate 32">
+    <img src="images/cert33.jpg" alt="Certificate 33">
+	<img src="images/cert34.jpg" alt="Certificate 34">
+    <img src="images/cert35.jpg" alt="Certificate 35">
+    <img src="images/cert36.jpg" alt="Certificate 36">
+    <img src="images/cert37.jpg" alt="Certificate 37">
+	<img src="images/cert38.jpg" alt="Certificate 38">
+	<img src="images/cert39.jpg" alt="Certificate 39">
+	<img src="images/cert40.jpg" alt="Certificate 40">
+	
+	
+	
+	
+	
+  </div>
+</section>
+
+
+<!-- Gallery -->
+<section id="gallery" class="gallery">
+  <h2>My Achievements in Pictures</h2>
+  <div class="gallery-grid">
+    <img src="images/award1.jpg" alt="Award 1">
+    <img src="images/award2.jpg" alt="Award 2">
+    <img src="images/award3.jpg" alt="Award 3">
+    <img src="images/award4.jpg" alt="Award 4">
+    <img src="images/award5.jpg" alt="Award 5">
+    <img src="images/award6.jpg" alt="Award 6">
+    <img src="images/award7.jpg" alt="Award 7">
+    <img src="images/award8.jpg" alt="Award 8">
+    <img src="images/award9.jpg" alt="Award 9">
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox">
+  <img id="lightbox-img" src="">
+</div>
+
+<!-- Contact -->
+<section id="contact" class="contact">
+  <h2>Contact Me</h2>
+  <p>📞 Phone: 9618566433</p>
+  <a href="mailto:221fa20017@gmail.com">Email Me</a>
+  <a href="https://www.linkedin.com/in/sri-kavya-swarna-687146264/" target="_blank">LinkedIn</a>
+  <a href="https://github.com/srikavya12-Kavs" target="_blank">GitHub</a>
+  <a href="images/resume__assest.pdf" download>📄 Download Resume</a>
+</section>
+
+
+<!-- Footer -->
+<footer>
+  &copy; 2025 Swarna Sri Kavya | Portfolio
+</footer>
+
+<!-- JavaScript -->
+<script>
+const words = ["Swarna Sri Kavya", "a Developer", "an AI Enthusiast"];
+let i = 0, j = 0, isDeleting = false;
+function type() {
+  let current = words[i];
+  document.getElementById("typing").textContent = current.substring(0, j);
+  if (!isDeleting && j < current.length) { j++; }
+  else if (isDeleting && j > 0) { j--; }
+  else {
+    isDeleting = !isDeleting;
+    if (!isDeleting) { i = (i + 1) % words.length; }
+  }
+  setTimeout(type, isDeleting ? 100 : 200);
+}
+type();
+
+// Lightbox
+const images = document.querySelectorAll('.gallery-grid img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+images.forEach(img => {
+  img.addEventListener('click', () => {
+    lightbox.style.display = 'flex';
+    lightboxImg.src = img.src;
+  });
+});
+lightbox.addEventListener('click', () => {
+  lightbox.style.display = 'none';
+});
+</script>
+
+</body>
+</html>
